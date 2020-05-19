@@ -1,0 +1,56 @@
+
+package metodolagrange;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Usuario
+ */
+public class claseLogica {
+    private ArrayList<Punto> datos;
+    
+    claseLogica(ArrayList<Punto> lista){
+    this.datos = lista;
+    
+    }
+    
+    public String getLagrange(){
+        int i,j;
+        String lag="",lag1="";
+        String polinomio="",pol1="",pol2="",pol3="";
+        for (i = 0; i<this.datos.size();i++){
+            lag ="";
+            //for( j = 0;j<this.datos.size();j++){
+                if(i==0){
+                    lag = "(x- " + String.valueOf( this.datos.get(1).getX()) + " ) / " ;
+                    lag += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(1).getX()) +")";
+                    lag1 = "(x- " + String.valueOf( this.datos.get(2).getX()) + " ) / " ;
+                    lag1 += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(2).getX()) +")";
+                    pol1 =lag+"*"+lag1;
+                }else if(i==1){
+                    lag = "(x- " + String.valueOf( this.datos.get(0).getX()) + " ) / " ;
+                    lag += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(0).getX()) +")";
+                    lag1 = "(x- " + String.valueOf( this.datos.get(2).getX()) + " ) / " ;
+                    lag1 += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(2).getX()) +")";
+                    pol2 =lag+"*"+lag1;
+                }else{
+                    lag = "(x- " + String.valueOf( this.datos.get(0).getX()) + " ) / " ;
+                    lag += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(0).getX()) +")";
+                    lag1 = "(x- " + String.valueOf( this.datos.get(1).getX()) + " ) / " ;
+                    lag1 += "(" +String.valueOf( this.datos.get(i).getX()) +" - " + String.valueOf( this.datos.get(1).getX()) +")";
+                    pol3 =lag+"*"+lag1;
+                }
+           // }
+            
+           
+            
+        }
+         polinomio =pol1+"*"+String.valueOf( this.datos.get(0).getY())+"+"+pol2+"*"+String.valueOf( this.datos.get(1).getY())+"+"+pol3+"*"+String.valueOf( this.datos.get(2).getY());
+        return polinomio;
+    }
+    
+    
+    
+    
+}
