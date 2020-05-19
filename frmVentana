@@ -1,0 +1,193 @@
+
+package metodolagrange;
+
+import javax.swing.JOptionPane;
+
+
+public class frmVentana extends javax.swing.JFrame {
+    modelTabla modelo = new modelTabla();
+    /**
+     * Creates new form frmVentana
+     */
+    public frmVentana() {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.jTable1.setModel(modelo);
+   
+       
+       
+    }
+
+   
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtX = new javax.swing.JTextField();
+        txtY = new javax.swing.JTextField();
+        bntAdd = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnLagrange = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Método de Lagrange");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("X:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 15, -1, -1));
+
+        jLabel2.setText("Y:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 15, -1, -1));
+        getContentPane().add(txtX, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 12, 57, -1));
+        getContentPane().add(txtY, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 12, 54, -1));
+
+        bntAdd.setText("Agregar");
+        bntAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bntAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 11, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 296, 146));
+
+        btnLagrange.setText("Calcular Lagrange");
+        btnLagrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLagrangeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLagrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 20, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/metodolagrange/iconos/limpiar.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 63, 81, 82));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/metodolagrange/iconos/aceptar.jpg"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 163, 81, 77));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/metodolagrange/iconos/fondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 2, 450, 260));
+
+        pack();
+    }// </editor-fold>                        
+
+    private void bntAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+        try{
+        Punto punto = new Punto();
+        
+        punto.setI(0);
+        
+        punto.setX(Double.parseDouble( this.txtX.getText().trim()));
+        
+        punto.setY(Double.parseDouble( this.txtY.getText().trim()));
+        
+        System.out.println(  punto.toString());
+        
+        this.modelo.addPunto(punto);
+        
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),"Error",2);
+        }
+        //Añadir a la tabla
+    }                                      
+
+    private void btnLagrangeActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        
+        claseLogica clase = new claseLogica(this.modelo.datos);
+        JOptionPane.showMessageDialog(rootPane, clase.getLagrange());
+        
+    }                                           
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    txtY.setText(null);
+    txtX.setText(null);
+    txtY.requestFocus();
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        System.exit(0);
+    }                                        
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmVentana().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton bntAdd;
+    private javax.swing.JButton btnLagrange;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtX;
+    private javax.swing.JTextField txtY;
+    // End of variables declaration                   
+}
